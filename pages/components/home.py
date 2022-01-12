@@ -1,38 +1,10 @@
-
 from tkinter import *
-from components import transfer
-global size_obtained, copy_file_sizes
-size_obtained = 0
-my_copy_file = 0
-my_copy_folder = 0
-
-# app
-app = Tk()
-
-# geometry
-# app.geometry("1920x1080")
-
-# title
-app.title("Copy and Track App")
-
-app.minsize(1500, 800)
-
-# boolean vars
-file_source_is_not_empty = False
-folder_source_is_not_empty = False
-destination_is_not_empty = False
-
-# --- app pages content starts --- #
-
-folder_image = PhotoImage(file="./src/folder.png").subsample(3, 3)
-file_image = PhotoImage(file="./src/file.png").subsample(3, 3)
-forward_image = PhotoImage(file="./src/forward.png").subsample(10, 10)
-progress_image = PhotoImage(file="./src/progress_1.png").subsample(8, 8)
-done = PhotoImage(file="./src/done_1.png").subsample(8, 8)
+from . import transfer, utils
 
 # home page
 
-def homepage():
+
+def homepage(app):
 
     # top menu frame
     top_menu_frame = Frame(app, width=1920, height=60)
@@ -116,14 +88,16 @@ def homepage():
                                    "to another location").place(anchor="c",
                                                                 relx=0.5,
                                                                 rely=0.05)
-    Label(canvas, bg="white", image=folder_image).place(anchor="c", relx=0.36, rely=0.25)
-    Label(canvas, bg="white", image=forward_image).place(anchor="c", relx=0.50, rely=0.25)
-    Label(canvas, bg="white", image=folder_image).place(anchor="c", relx=0.63, rely=0.25)
+    Label(canvas, bg="white", image=utils.folder_image).place(anchor="c", relx=0.36, rely=0.25)
+    Label(canvas, bg="white", image=utils.forward_image).place(anchor="c", relx=0.50, rely=0.25)
+    Label(canvas, bg="white", image=utils.folder_image).place(anchor="c", relx=0.63, rely=0.25)
     Button(canvas, text="Transfer & Track Folders", width=50, height=3, bg="white",
-           command=lambda: transfer.directory_transfer(app=app), bd=3).place(anchor="c", relx=0.5, rely=0.45)
-    Label(canvas, bg="white", image=file_image).place(anchor="c", relx=0.36, rely=0.65)
-    Label(canvas, bg="white", image=forward_image).place(anchor="c", relx=0.50, rely=0.65)
-    Label(canvas, bg="white", image=folder_image).place(anchor="c", relx=0.63, rely=0.65)
+           command=lambda: transfer.directory_transfer(
+               app=app
+           ), bd=3).place(anchor="c", relx=0.5, rely=0.45)
+    Label(canvas, bg="white", image=utils.file_image).place(anchor="c", relx=0.36, rely=0.65)
+    Label(canvas, bg="white", image=utils.forward_image).place(anchor="c", relx=0.50, rely=0.65)
+    Label(canvas, bg="white", image=utils.folder_image).place(anchor="c", relx=0.63, rely=0.65)
     Button(canvas, text="Transfer & Track Files", width=50, height=3, bg="white", command=lambda: transfer.file_transfer(
         app=app
     ),
@@ -131,8 +105,4 @@ def homepage():
     canvas.place(anchor="w", relx=0.07, rely=0.55)
 
 
-
-homepage()
-
-# keep app alive
-app.mainloop()
+# --- app content ends --- #

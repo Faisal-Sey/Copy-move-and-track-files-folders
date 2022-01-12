@@ -1,10 +1,8 @@
 from tkinter import *
-import utils
 
-#   start of progress bar handler
-
-
-def bars_files(*args, **kwargs):
+def bars_files(**kwargs):
+    #   start of progress bar handler
+    done = PhotoImage(file="../../src/done_1.png").subsample(8, 8)
     current_size = kwargs["current_size"] 
     copied = kwargs["copied"] 
     total_files = kwargs["total_files"] 
@@ -54,13 +52,15 @@ def bars_files(*args, **kwargs):
     total_size["text"] = "Total Size: " + str(current_size) + "/" + str(file_size_string)
     percentage["text"] = "Percentages: " + str(round(current_percent)) + "/" + "100"
     if round(current_percent) == 100:
-        progress_label["image"] = utils.done
+        progress_label["image"] = done
         app.update_idletasks()
     progress["value"] = current_percent
     app.update_idletasks()
 
 
-def bars_folder(*args, **kwargs):
+def bars_folder(**kwargs):
+    #   start of progress bar handler
+    done = PhotoImage(file="../../src/done_1.png").subsample(8, 8)
     current_size = kwargs["current_size"] 
     copied = kwargs["copied"] 
     total_files = kwargs["total_files"] 
@@ -109,7 +109,7 @@ def bars_folder(*args, **kwargs):
     total_size["text"] = "Total Size: " + str(current_size) + "/" + str(file_size_string)
     percentage["text"] = "Percentages: " + str(round(current_percent)) + "/" + "100"
     if round(current_percent) == 100:
-        progress_label["image"] = utils.done
+        progress_label["image"] = done
         app.update_idletasks()
     progress["value"] = current_percent
     app.update_idletasks()

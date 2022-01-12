@@ -1,9 +1,8 @@
 import os
 from tkinter import *
-from . import trackers, callbacks
+import trackers, callbacks
 from copy import deepcopy
 from tkinter.ttk import Progressbar
-import copy_and_track
 import shutil
 
 #   start of copying function

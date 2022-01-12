@@ -1,5 +1,5 @@
 from tkinter import *
-from . import copyer, move, trackers, utils, get_contents
+import copyer, move, trackers, get_contents
 from tkinter.ttk import Progressbar
 
 # file transfer page
@@ -7,6 +7,12 @@ from tkinter.ttk import Progressbar
 
 def file_transfer(**kwargs):
     app = kwargs["app"]
+    # loading pics
+    folder_image = PhotoImage(file="../../src/folder.png").subsample(3, 3)
+    file_image = PhotoImage(file="../../src/file.png").subsample(3, 3)
+    forward_image = PhotoImage(file="../../src/forward.png").subsample(10, 10)
+    progress_image = PhotoImage(file="../../src/progress_1.png").subsample(8, 8)
+    done = PhotoImage(file="../../src/done_1.png").subsample(8, 8)
 
     # canvas body
     canvas = Canvas(app, width=1300, height=650, bg="#ffffff")
@@ -30,9 +36,9 @@ def file_transfer(**kwargs):
                                    "to another location").place(anchor="c",
                                                                 relx=0.4,
                                                                 rely=0.05)
-    Label(canvas, bg="white", image=utils.file_image).place(anchor="c", relx=0.26, rely=0.25)
-    Label(canvas, bg="white", image=utils.forward_image).place(anchor="c", relx=0.40, rely=0.25)
-    Label(canvas, bg="white", image=utils.folder_image).place(anchor="c", relx=0.53, rely=0.25)
+    Label(canvas, bg="white", image=file_image).place(anchor="c", relx=0.26, rely=0.25)
+    Label(canvas, bg="white", image=forward_image).place(anchor="c", relx=0.40, rely=0.25)
+    Label(canvas, bg="white", image=folder_image).place(anchor="c", relx=0.53, rely=0.25)
     scrollbar_src = Scrollbar(canvas)
     scrollbar_src.place(anchor="c", relx=0.35, rely=0.41, height=70)
     src_text_widget = Text(canvas, bd=5, height=4, width=25, yscrollcommand=scrollbar_src.set)
@@ -48,7 +54,7 @@ def file_transfer(**kwargs):
     Button(canvas, text="Open Destination directory", command=lambda: get_contents.get_files("dest")).place(anchor="c", relx=0.53,
                                                                                                rely=0.5)
     list_contents = Frame(canvas, width=1030, height=290, bg="#ebe9e9")
-    progress_label = Label(list_contents, image=utils.progress_image)
+    progress_label = Label(list_contents, image=progress_image)
     progress_label.place(anchor="c", relx=0.5, rely=0.2)
     progress = Progressbar(list_contents, orient=HORIZONTAL, length=100,
                            mode='determinate')
@@ -76,6 +82,13 @@ def file_transfer(**kwargs):
 def directory_transfer(**kwargs):
     app = kwargs["app"]
 
+    # loading pics
+    folder_image = PhotoImage(file="../../src/folder.png").subsample(3, 3)
+    file_image = PhotoImage(file="../../src/file.png").subsample(3, 3)
+    forward_image = PhotoImage(file="../../src/forward.png").subsample(10, 10)
+    progress_image = PhotoImage(file="../../src/progress_1.png").subsample(8, 8)
+    done = PhotoImage(file="../../src/done_1.png").subsample(8, 8)
+
     # canvas body
     canvas = Canvas(app, width=1300, height=650, bg="#ffffff")
 
@@ -98,9 +111,9 @@ def directory_transfer(**kwargs):
                                    "to another location").place(anchor="c",
                                                                 relx=0.4,
                                                                 rely=0.05)
-    Label(canvas, bg="white", image=utils.folder_image).place(anchor="c", relx=0.26, rely=0.25)
-    Label(canvas, bg="white", image=utils.forward_image).place(anchor="c", relx=0.40, rely=0.25)
-    Label(canvas, bg="white", image=utils.folder_image).place(anchor="c", relx=0.53, rely=0.25)
+    Label(canvas, bg="white", image=folder_image).place(anchor="c", relx=0.26, rely=0.25)
+    Label(canvas, bg="white", image=forward_image).place(anchor="c", relx=0.40, rely=0.25)
+    Label(canvas, bg="white", image=folder_image).place(anchor="c", relx=0.53, rely=0.25)
     scrollbar_src = Scrollbar(canvas)
     scrollbar_src.place(anchor="c", relx=0.35, rely=0.41, height=70)
     src_text_widget = Text(canvas, bd=5, height=4, width=25, yscrollcommand=scrollbar_src.set)
@@ -118,7 +131,7 @@ def directory_transfer(**kwargs):
                                                                                                            relx=0.53,
                                                                                                            rely=0.5)
     list_contents = Frame(canvas, width=1030, height=290, bg="#ebe9e9")
-    progress_label = Label(list_contents, image=utils.progress_image)
+    progress_label = Label(list_contents, image=progress_image)
     progress_label.place(anchor="c", relx=0.5, rely=0.2)
     progress = Progressbar(list_contents, orient=HORIZONTAL, length=100,
                            mode='determinate')
@@ -138,3 +151,4 @@ def directory_transfer(**kwargs):
     # copyright label
     copyright_label = Label(app, text="Copyright 2021")
     copyright_label.place(anchor="c", relx=0.5, rely=0.97)
+
