@@ -5,8 +5,12 @@ from tkinter.scrolledtext import ScrolledText
 #   start of file and folder trackers
 #       start of files tracker
 
+track_contents = None
+success_content_scrolled_text = None
+unsuccess_content_scrolled_text = None
+table_header = None
 
-def track_files(*args, **kwargs):
+def track_files(**kwargs):
     destination = kwargs["destination"]
     progress_label = kwargs["progress_label"]
     progress_title = kwargs["progress_title"]
@@ -133,7 +137,7 @@ def track_files(*args, **kwargs):
 #       start of folders tracker
 
 
-def track_folder(*args, **kwargs):
+def track_folder(**kwargs):
     destination = kwargs["destination"]
     progress_label = kwargs["progress_label"]
     progress_title = kwargs["progress_title"]

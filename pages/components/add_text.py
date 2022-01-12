@@ -2,10 +2,17 @@ import tkinter
 
 #       add text to file text entry
 
-def add_text_to_source(*args, **kwargs):
+folder_source_is_not_empty = False
+file_source_is_not_empty = False
+destination_is_not_empty = False
+destination = ''
+sources = ''
+
+def add_text_to_source(**kwargs):
+    global folder_source_is_not_empty, sources
     sources = kwargs["sources"]
     src_text_widget = kwargs["src_text_widget"]
-    folder_source_is_not_empty = kwargs["folder_source_is_not_empty"]
+
     try:
         if sources == "":
             tkinter.messagebox.showinfo("Error Message", "No source directory specified")
@@ -17,10 +24,10 @@ def add_text_to_source(*args, **kwargs):
         tkinter.messagebox.showinfo("Error Message", "No source directory specified")
 
 
-def add_filenames_to_text(*args, **kwargs):
+def add_filenames_to_text(**kwargs):
+    global file_source_is_not_empty, sources
     sources = kwargs["sources"]
     src_text_widget = kwargs["src_text_widget"]
-    file_source_is_not_empty = kwargs["folder_source_is_not_empty"]
     
     try:
         if sources == ():
@@ -41,7 +48,8 @@ def add_filenames_to_text(*args, **kwargs):
 #       add text to destination text entry
 
 
-def add_text_to_dest(*args, **kwargs):
+def add_text_to_dest(**kwargs):
+    global destination_is_not_empty, destination
     destination = kwargs["destination"]
     dest_text_widget = kwargs["dest_text_widget"]
 

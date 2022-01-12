@@ -1,6 +1,6 @@
 import os
 from tkinter import *
-import trackers, callbacks
+from . import trackers, callbacks
 from copy import deepcopy
 from tkinter.ttk import Progressbar
 import shutil
@@ -8,8 +8,19 @@ import shutil
 #   start of copying function
 #       start of copying files function
 
+total_files = 0
+total_size = None
+progress_label = None
+progress = None
+percentage = None
+app = None
+file_sizes = []
+files_total = 0
+copy_file_sizes = None
+FILE_SIZE = 0
 
-def copy_files(*args, **kwargs):
+def copy_files(**kwargs):
+    global total_files, files_total, file_sizes, copy_file_sizes, FILE_SIZE, progress_label, progress, percentage, app, total_size 
     src_text_widget = kwargs["src_text_widget"]
     dest_text_widget = kwargs["dest_text_widget"]
     file_source_is_not_empty = kwargs["file_source_is_not_empty"]
@@ -48,7 +59,6 @@ def copy_files(*args, **kwargs):
         progress_title.place(anchor="c", relx=0.10, rely=0.598)
 
         total_files = 0
-        file_sizes = []
         i = 1
         for file in sources:
             total_files = total_files + 1
@@ -66,10 +76,11 @@ def copy_files(*args, **kwargs):
 #       start of folders copying function
 
 
-def copy_folders(*args, **kwargs):
+def copy_folders(**kwargs):
+    global total_files, files_total, file_sizes, copy_file_sizes, FILE_SIZE
     src_text_widget = kwargs["src_text_widget"]
     dest_text_widget = kwargs["dest_text_widget"]
-    folder_source_is_not_empty = kwargs["file_source_is_not_empty"]
+    folder_source_is_not_empty = kwargs["folder_source_is_not_empty"]
     destination_is_not_empty = kwargs["destination_is_not_empty"]
     canvas = kwargs["canvas"]
     app = kwargs["app"]
@@ -87,6 +98,8 @@ def copy_folders(*args, **kwargs):
             trackers.unsuccess_content_scrolled_text.place_forget()
             trackers.table_header.place_forget()
         except NameError:
+            pass
+        except AttributeError:
             pass
         list_contents = Frame(canvas, width=1030, height=290, bg="#ebe9e9")
         progress_label = Label(list_contents, image=progress_image)

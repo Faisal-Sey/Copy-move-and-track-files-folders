@@ -1,8 +1,9 @@
 from tkinter import *
 
 def bars_files(**kwargs):
+    from . import utils
     #   start of progress bar handler
-    done = PhotoImage(file="../../src/done_1.png").subsample(8, 8)
+    done = utils.done
     current_size = kwargs["current_size"] 
     copied = kwargs["copied"] 
     total_files = kwargs["total_files"] 
@@ -60,7 +61,8 @@ def bars_files(**kwargs):
 
 def bars_folder(**kwargs):
     #   start of progress bar handler
-    done = PhotoImage(file="../../src/done_1.png").subsample(8, 8)
+    from . import utils
+    done = utils.done
     current_size = kwargs["current_size"] 
     copied = kwargs["copied"] 
     total_files = kwargs["total_files"] 

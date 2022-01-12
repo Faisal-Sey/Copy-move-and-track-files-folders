@@ -1,10 +1,6 @@
 
 from tkinter import *
 from components import transfer
-global size_obtained, copy_file_sizes
-size_obtained = 0
-my_copy_file = 0
-my_copy_folder = 0
 
 # app
 app = Tk()
@@ -16,11 +12,6 @@ app = Tk()
 app.title("Copy and Track App")
 
 app.minsize(1500, 800)
-
-# boolean vars
-file_source_is_not_empty = False
-folder_source_is_not_empty = False
-destination_is_not_empty = False
 
 # --- app pages content starts --- #
 

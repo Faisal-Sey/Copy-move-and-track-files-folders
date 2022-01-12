@@ -1,5 +1,5 @@
 import os
-import copyer
+from . import copyer
 
 #   start move files n folders function
 #       move files function
